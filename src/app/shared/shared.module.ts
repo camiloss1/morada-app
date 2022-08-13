@@ -16,7 +16,8 @@ import { HeaderComponent } from './components/header/header.component';
     RouterModule
   ],
   exports:[
-    FooterComponent
+    FooterComponent,
+    HeaderComponent
   ]
 })
 export class SharedModule { }

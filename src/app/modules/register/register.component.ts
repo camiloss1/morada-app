@@ -31,9 +31,7 @@ export class RegisterComponent implements OnInit {
       })
     }
    
-    console.log(user);
-    return this.http.post('https://moradatest.free.beeceptor.com/signup', user,httpOptions).subscribe(data => {
-      console.log(data);
+    return this.http.post<any>('https://moradatest.free.beeceptor.com/signup', user,httpOptions).subscribe(data => {
       Swal.fire({
         title: 'title',
         text: 'text',

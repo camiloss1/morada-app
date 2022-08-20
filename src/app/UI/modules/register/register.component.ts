@@ -14,6 +14,28 @@ export class RegisterComponent implements OnInit {
   response: any;
   user!: UserResgistered;
   constructor(private _userUseCase: UserUseCase, private formBuilder: FormBuilder,) { }
+  public validationMessages = {
+    name: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ],
+    documentType: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ],
+    document: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ],
+    phone: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ],
+    email: [
+      { type: 'required', message: 'Este campo es requerido' },
+      { type: 'pattern', message: 'Solo se permiten emails' }
+    ],
+    password: [
+      { type: 'required', message: 'Este campo es requerido' },
+      { type: 'minlength', message: 'Este campo debe tener minimo 8 caracteres' }
+    ]
+  };
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       name: ['',

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DefaultComponent } from './layouts/default/default.component';
-import { FullwidthComponent } from './layouts/fullwidth/fullwidth.component';
-import { ContactComponent } from './modules/contact/contact.component';
-import { HomeComponent } from './modules/home/home.component';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
-import { AuthGuard } from './shared/guard/auth.guard';
+import { DefaultComponent } from './UI/layouts/default/default.component';
+import { FullwidthComponent } from './UI/layouts/fullwidth/fullwidth.component';
+import { ContactComponent } from './UI/modules/contact/contact.component';
+import { HomeComponent } from './UI/modules/home/home.component';
+import { LoginComponent } from './UI/modules/login/login.component';
+import { RegisterComponent } from './UI/modules/register/register.component';
+import { AuthGuard } from './UI/shared/guard/auth.guard';
+
 
 const routes: Routes = [
   {path:'', redirectTo:'full/login', pathMatch:'full'},

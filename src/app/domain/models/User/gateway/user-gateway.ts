@@ -1,7 +1,6 @@
 import { Observable } from "rxjs";
-import { User } from "../user";
-import { UserResgistered } from "../userregistered";
+import { User, UserResponse } from "../user";
 
 export abstract class UserGateway {
-abstract signup(user : User) : Observable<UserResgistered>;
+abstract signup(user : User) : Observable<UserResponse>;
 }

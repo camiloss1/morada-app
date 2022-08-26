@@ -8,6 +8,10 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
 import { DefaultModule } from './UI/layouts/default/default.module';
 import { FullwidthModule } from './UI/layouts/fullwidth/fullwidth.module';
+import { UserGateway } from './domain/models/User/gateway/user-gateway';
+import { MoradaUserApiService } from './infraestructure/driven-adapter/services/morada-user/morada-user-api.service';
+import { PropertyGateway } from './domain/models/Property/gateway/property-gateway';
+import { MoradaPropertyApiService } from './infraestructure/driven-adapter/services/morada-property/morada-property-api.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { FullwidthModule } from './UI/layouts/fullwidth/fullwidth.module';
     SweetAlert2Module.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: UserGateway, useClass: MoradaUserApiService },
+    { provide: PropertyGateway, useClass: MoradaPropertyApiService }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

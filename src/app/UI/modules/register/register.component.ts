@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/domain/models/User/user';
+import { User, UserResponse } from 'src/app/domain/models/User/user';
 import { UserResgistered } from 'src/app/domain/models/User/userregistered';
 import { UserUseCase } from 'src/app/domain/usecase/userusecase';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -74,14 +75,43 @@ export class RegisterComponent implements OnInit {
     })
   }
   register() {
-    var user: User = {
-      email : this.signupForm.controls['email'].value,
-      password : this.signupForm.controls['password'].value,
-      name: this.signupForm.controls['name'].value,
-      documentType: this.signupForm.controls['documentType'].value,
-      document: this.signupForm.controls['document'].value,
-      phone: this.signupForm.controls['phone'].value,
-      role: 1
+    if (this.signupForm.valid) {
+      var user: User = {
+        email: this.signupForm.controls['email'].value,
+        password: this.signupForm.controls['password'].value,
+        name: this.signupForm.controls['name'].value,
+        documentType: this.signupForm.controls['documentType'].value,
+        document: this.signupForm.controls['document'].value,
+        phone: this.signupForm.controls['phone'].value,
+        role: 1
+      }
+      this.response = this._userUseCase.signup(user);
+      this.response.subscribe(
+        (data: UserResponse) => {
+          if (data) {
+            this.user = data.user
+            Swal.fire({
+              title: 'Usuario Creado',
+              text: 'El usuario ' + this.user.name + ' fue creado exitosamente',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            });
+          }
+          else {
+            Swal.fire({
+              title: 'Usuario No Creado',
+              text: 'El usuario ' + this.user.name + ' no pudo ser creado',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            });
+          }
+        }
+      )
     }
+
+  }
+
+  public get f() {
+    return this.signupForm.controls
   }
 }

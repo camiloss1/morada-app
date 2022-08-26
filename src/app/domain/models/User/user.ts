@@ -1,3 +1,5 @@
+import { UserResgistered } from "./userregistered";
+
 export class User {
     name!: string;
     documentType! : string;
@@ -6,4 +8,8 @@ export class User {
     password!: string;
     phone!: string;
     role!: number;
+}
+
+export class UserResponse {
+    user!: UserResgistered;
 }

@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DefaultModule } from './UI/layouts/default/default.module';
 import { FullwidthModule } from './UI/layouts/fullwidth/fullwidth.module';
 import { UserGateway } from './domain/models/User/gateway/user-gateway';
@@ -13,6 +13,7 @@ import { MoradaUserApiService } from './infraestructure/driven-adapter/services/
 import { PropertyGateway } from './domain/models/Property/gateway/property-gateway';
 import { MoradaPropertyApiService } from './infraestructure/driven-adapter/services/morada-property/morada-property-api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './infraestructure/helpers/authinterceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true},
     { provide: UserGateway, useClass: MoradaUserApiService },
     { provide: PropertyGateway, useClass: MoradaPropertyApiService }],
   bootstrap: [AppComponent],

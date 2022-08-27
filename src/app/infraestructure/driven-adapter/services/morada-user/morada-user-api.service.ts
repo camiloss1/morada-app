@@ -9,7 +9,7 @@ import { GenericService } from 'src/app/infraestructure/helpers/generic.service'
 @Injectable({
   providedIn: 'root'
 })
-export class MoradaApiService extends UserGateway {
+export class MoradaUserApiService extends UserGateway {
  
 private _url = 'http://localhost:3001'
   constructor(private genericService : GenericService) { super();}

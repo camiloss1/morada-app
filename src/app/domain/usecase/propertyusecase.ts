@@ -2,8 +2,6 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { PropertyGateway } from "../models/Property/gateway/property-gateway";
 import { PropertiesResponse, Property, PropertyResponse } from "../models/Property/property";
-import { UserGateway } from "../models/User/gateway/user-gateway";
-import { User, UserResponse } from "../models/User/user";
 
 @Injectable ({
     providedIn:'root'

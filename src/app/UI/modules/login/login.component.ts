@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserUseCase } from 'src/app/domain/usecase/userusecase';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  response: any;
   loginForm!: FormGroup;
   formValid: Boolean = false;
   usuario: String = "camilo425@gmail.com"
@@ -21,13 +23,14 @@ export class LoginComponent implements OnInit {
     ],
     password: [
       { type: 'required', message: 'Este campo es requerido' },
-      { type: 'minlength', message: 'Este campo debe tener minimo 8 caracteres' }
+      { type: 'minlength', message: 'Este campo debe tener minimo 6 caracteres' }
     ]
   };
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private _userUseCase: UserUseCase) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
       password: ['',
         [
           Validators.required,
-          Validators.minLength(8)
+          Validators.minLength(6)
         ]
       ]
     })
@@ -55,12 +58,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       var email = this.loginForm.controls['email'].value;
       var password = this.loginForm.controls['password'].value;
+ 
       //Mockup de servicio de login
-      this.http.get<any>('https://moradatest.free.beeceptor.com/login').subscribe(data => {
+      this.response = this._userUseCase.login(email,password);
+      this.response.subscribe((data: any) => {
       if(data)
       {
         localStorage.setItem('token', data.token);
-        localStorage.setItem('expiration', data.expiration);
         this.router.navigate(['default/home']);
         return;
       }

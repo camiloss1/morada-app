@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User, UserResponse } from 'src/app/domain/models/User/user';
+import { User } from 'src/app/domain/models/User/user';
 import { UserResgistered } from 'src/app/domain/models/User/userregistered';
+import { UserResponse } from 'src/app/domain/models/User/userresponse';
 import { UserUseCase } from 'src/app/domain/usecase/userusecase';
 import Swal from 'sweetalert2';
 

@@ -12,6 +12,7 @@ import { UserGateway } from './domain/models/User/gateway/user-gateway';
 import { MoradaUserApiService } from './infraestructure/driven-adapter/services/morada-user/morada-user-api.service';
 import { PropertyGateway } from './domain/models/Property/gateway/property-gateway';
 import { MoradaPropertyApiService } from './infraestructure/driven-adapter/services/morada-property/morada-property-api.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MoradaPropertyApiService } from './infraestructure/driven-adapter/servi
     FormsModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: UserGateway, useClass: MoradaUserApiService },

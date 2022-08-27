@@ -1,4 +1,3 @@
-import { UserResgistered } from "./userregistered";
 
 export class User {
     name!: string;
@@ -10,6 +9,3 @@ export class User {
     role!: number;
 }
 
-export class UserResponse {
-    user!: UserResgistered;
-}
